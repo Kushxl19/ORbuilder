@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ORbuilder - Free online resume builder. Create professional resumes in minutes and download as PDF. No signup required.">
+    <meta name="keywords" content="resume builder, CV creator, free resume maker, professional resume, PDF resume">
+    <meta name="author" content="ORbuilder">
+    <title>ORbuilder - Free Online Resume Builder | Create Professional Resumes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+
+
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo"><a href="index.html">
+                <h1>OR<span>builder</span></h1>
+                <p>Professional Resume Builder</p>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#features">Features</a></li>
+
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    
+                </ul>
+            </nav>
+            <button class="btn primary-btn download-btn" id="downloadBtn" disabled>
+                <i class="fas fa-download"></i> Download PDF
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Create Your Professional Resume in Minutes</h2>
+                    <p class="subtitle">Free, no signup required. Download as PDF instantly.</p>
+                    <button class="btn primary-btn large-btn start-building-btn">
+                        <i class="fas fa-plus-circle"></i> Start Building Now
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <img src="resume.png" alt="Professional resume example" class="resume-preview">
+                </div>
+            </div>
+        </section>
+
+        <section class="resume-builder" id="builder">
+            <div class="container">
+                <div class="builder-container">
+                    <div class="form-section">
+                        <div class="form-tabs">
+                            <button class="tab-btn active" data-tab="personal">Personal</button>
+                            <button class="tab-btn" data-tab="experience">Experience</button>
+                            <button class="tab-btn" data-tab="education">Education</button>
+                            <button class="tab-btn" data-tab="skills">Skills</button>
+                        </div>
+
+                        <div class="tab-content active" id="personal-tab">
+                            <h3>Personal Information</h3>
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="jobTitle">Professional Title</label>
+                                <input type="text" id="jobTitle" placeholder="Software Engineer">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" placeholder="(123) 456-7890">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea id="address" rows="2" placeholder="123 Main St, City, Country"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="summary">Professional Summary</label>
+                                <textarea id="summary" rows="4"
+                                    placeholder="Briefly describe your professional background and skills..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn Profile</label>
+                                <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                            </div>
+                            <div class="form-group">
+                                <label for="github">GitHub Profile</label>
+                                <input type="url" id="github" placeholder="https://github.com/yourusername">
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="experience-tab">
+                            <h3>Work Experience</h3>
+                            <div id="experience-fields">
+                                <div class="experience-item">
+                                    <div class="form-group">
+                                        <label>Job Title</label>
+                                        <input type="text" class="exp-title" placeholder="Senior Developer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Employer</label>
+                                        <input type="text" class="exp-employer" placeholder="Tech Company Inc.">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group half-width">
+                                            <label>Start Date</label>
+                                            <input type="text" class="exp-start" placeholder="MM/YYYY">
+                                        </div>
+                                        <div class="form-group half-width">
+                                            <label>End Date</label>
+                                            <input type="text" class="exp-end" placeholder="MM/YYYY or Present">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="exp-description" rows="3"
+                                            placeholder="Describe your responsibilities and achievements..."></textarea>
+                                    </div>
+                                    <button class="btn secondary-btn remove-exp-btn">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn primary-btn" id="add-experience-btn">
+                                <i class="fas fa-plus"></i> Add Another Position
+                            </button>
+                        </div>
+
+                        <div class="tab-content" id="education-tab">
+                            <h3>Education</h3>
+                            <div id="education-fields">
+                                <div class="education-item">
+                                    <div class="form-group">
+                                        <label>Degree</label>
+                                        <input type="text" class="edu-degree" placeholder="Bachelor of Science">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Institution</label>
+                                        <input type="text" class="edu-institution"
+                                            placeholder="University of Technology">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group half-width">
+                                            <label>Start Date</label>
+                                            <input type="text" class="edu-start" placeholder="MM/YYYY">
+                                        </div>
+                                        <div class="form-group half-width">
+                                            <label>End Date</label>
+                                            <input type="text" class="edu-end" placeholder="MM/YYYY or Present">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="edu-description" rows="2"
+                                            placeholder="Relevant coursework, honors..."></textarea>
+                                    </div>
+                                    <button class="btn secondary-btn remove-edu-btn">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn primary-btn" id="add-education-btn">
+                                <i class="fas fa-plus"></i> Add Another Education
+                            </button>
+                        </div>
+
+                        <div class="tab-content" id="skills-tab">
+                            <h3>Skills & Expertise</h3>
+                            <div class="form-group">
+                                <label>Add Your Skills</label>
+                                <div class="skills-input-container">
+                                    <input type="text" id="skill-input" placeholder="Type a skill and press Enter">
+                                    <button class="btn secondary-btn" id="add-skill-btn">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
+                                <div class="skills-tags" id="skills-tags">
+                                  
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Languages</label>
+                                <div class="skills-input-container">
+                                    <input type="text" id="language-input"
+                                        placeholder="Type a language and press Enter">
+                                    <button class="btn secondary-btn" id="add-language-btn">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
+                                <div class="skills-tags" id="language-tags">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="preview-section">
+                        <div class="resume-preview" id="resume-preview">
+                            <!-- Resume content will be generated here -->
+                        </div>
+                        <div class="preview-actions">
+                            <button class="btn secondary-btn" id="reset-btn">
+                                <i class="fas fa-redo"></i> Reset All
+                            </button>
+                            <button class="btn primary-btn" id="generate-preview-btn">
+                                <i class="fas fa-sync-alt"></i> Update Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2>Why Choose ORbuilder?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Create a professional resume in under 5 minutes with our intuitive interface.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock-open"></i>
+                        </div>
+                        <h3>No Signup Required</h3>
+                        <p>Start building immediately without creating an account or sharing personal data.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>PDF Download</h3>
+                        <p>Download your resume as a clean, text-based PDF with perfect formatting.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3>100% Free</h3>
+                        <p>No hidden charges or premium features - everything is completely free.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Privacy Focused</h3>
+                        <p>Your data stays in your browser - we don't store anything on our servers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Fill In Your Details</h3>
+                        <p>Enter your personal information, work experience, education, and skills.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Preview Your Resume</h3>
+                        <p>See how your resume looks in real-time as you fill in the details.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Download as PDF</h3>
+                        <p>Click the download button to get your professional resume instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ORbuilder</h3>
+                    <p>The easiest way to create a professional resume online. Free forever.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="resume-tips.html">Resume Tips</a></li>
+                        <li><a href="cover-letter-guide.html">Cover Letter Guide</a></li>
+                        <li><a href="job-search-advice.html">Job Search Advice</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ORbuilder. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
