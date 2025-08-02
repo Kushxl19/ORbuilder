@@ -550,3 +550,73 @@ function handleViewport() {
 
 window.addEventListener('resize', handleViewport);
 handleViewport(); // Initial call
+
+// Add this to your script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Store the active element before any potential scroll
+    let activeElement = null;
+    
+    // Detect when an input is focused
+    document.querySelectorAll('input, textarea').forEach(element => {
+        element.addEventListener('focus', function() {
+            activeElement = this;
+            // Add a small delay to allow for natural scrolling
+            setTimeout(() => {
+                if (document.activeElement === activeElement) {
+                    smoothScrollToElement(activeElement);
+                }
+            }, 300);
+        });
+    });
+    
+    // Prevent form submission from causing scroll
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    });
+    
+    // Smooth scroll to element without jumping
+    function smoothScrollToElement(element) {
+        const elementRect = element.getBoundingClientRect();
+        const absoluteElementTop = elementRect.top + window.pageYOffset;
+        const middle = absoluteElementTop - (window.innerHeight / 2.5);
+        
+        window.scrollTo({
+            top: middle,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Handle Android keyboard issues
+    if (/Android/.test(navigator.userAgent)) {
+        const viewport = document.querySelector('meta[name="viewport"]');
+        window.addEventListener('resize', function() {
+            if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                setTimeout(() => {
+                    smoothScrollToElement(document.activeElement);
+                }, 100);
+            } else {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            }
+        });
+    }
+});
+
+// Add this to handle iOS specifically
+if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.body.addEventListener('focusin', function() {
+        // iOS focusing fix
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+    });
+    
+    document.body.addEventListener('focusout', function() {
+        // Allow normal scrolling after input is done
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 200);
+    });
+}
