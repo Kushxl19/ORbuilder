@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const templateSelectBtns = document.querySelectorAll('.template-select-btn');
     const startBuildingBtn = document.querySelector('.start-building-btn');
 
+  document.addEventListener("contextmenu", event => event.preventDefault());
+
+
     // Tab Switching
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -620,3 +623,4 @@ if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         }, 200);
     });
 }
+
