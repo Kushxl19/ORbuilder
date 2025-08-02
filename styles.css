@@ -724,65 +724,184 @@ ul {
 }
 
 /* Responsive Styles */
+/* Add these to your existing styles.css */
+
+/* Improved Mobile Responsiveness */
 @media (max-width: 992px) {
     .builder-container {
         flex-direction: column;
     }
-
+    
     .preview-section {
         position: static;
+        margin-top: 2rem;
     }
-
-    .steps-container {
-        flex-direction: column;
+    
+    .resume-preview {
+        min-height: auto;
     }
 }
 
 @media (max-width: 768px) {
     .main-header .container {
         flex-direction: column;
-        gap: 1rem;
+        align-items: flex-start;
     }
-
+    
+    .main-nav {
+        margin: 1rem 0;
+        width: 100%;
+    }
+    
     .main-nav ul {
-        gap: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
     }
-
+    
+    .download-btn {
+        margin: 1rem 0 0 0;
+        width: 100%;
+    }
+    
     .hero .container {
         flex-direction: column;
         text-align: center;
     }
-
+    
     .hero-content {
         margin-bottom: 2rem;
     }
-
+    
+    .form-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: block;
+        padding-bottom: 5px;
+    }
+    
+    .form-tabs::-webkit-scrollbar {
+        height: 5px;
+    }
+    
+    .form-tabs::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 10px;
+    }
+    
+    .tab-btn {
+        display: inline-block;
+        margin-right: 0.5rem;
+    }
+    
     .form-row {
         flex-direction: column;
     }
-
+    
     .half-width {
         width: 100%;
+    }
+    
+    .preview-actions {
+        flex-direction: column;
+    }
+    
+    .preview-actions .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
     }
 }
 
 @media (max-width: 576px) {
-    .form-tabs {
-        flex-wrap: wrap;
+    .page-hero h2 {
+        font-size: 1.8rem;
     }
-
-    .tab-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+    
+    .hero h2 {
+        font-size: 1.8rem;
     }
-
-    .preview-actions {
+    
+    .features-grid, .templates-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps-container {
         flex-direction: column;
     }
-
-    .btn {
+    
+    .resume-header {
+        flex-direction: column;
+    }
+    
+    .resume-contact {
+        text-align: left;
+        margin-top: 1rem;
+    }
+    
+    .experience-header, .education-header {
+        flex-direction: column;
+    }
+    
+    .experience-dates, .education-dates {
+        margin-top: 0.5rem;
+    }
+    
+    .skills-input-container {
+        flex-direction: column;
+    }
+    
+    #skill-input, #language-input {
+        margin-bottom: 0.5rem;
+    }
+    
+    #add-skill-btn, #add-language-btn {
         width: 100%;
     }
+}
+
+/* Improved Form Elements for Mobile */
+input, textarea, select {
+    font-size: 16px !important; /* Prevents zooming on iOS */
+}
+
+/* Better Button Sizing */
+.btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+}
+
+/* Improved Tab Navigation for Mobile */
+.form-tabs {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.form-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+/* Better Experience/Education Items */
+.experience-item, .education-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.remove-exp-btn, .remove-edu-btn {
+    margin-top: 0.5rem;
+}
+
+/* Improved Skills Tags */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.skill-tag {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
 }
 
 
