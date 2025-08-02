@@ -905,4 +905,27 @@ input, textarea, select {
 }
 
 
+/* Add this to your styles.css */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+}
+
+/* Prevent layout shifts when inputs are focused */
+@media (max-width: 768px) {
+    .form-section {
+        padding-bottom: 300px; /* Space for keyboard */
+    }
+    
+    input, textarea, select {
+        font-size: 16px !important;
+        transform: translateZ(0);
+    }
+}
 
